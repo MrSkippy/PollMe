@@ -1,0 +1,8 @@
+{
+  "name" : "PollMe",
+  "version" : "0.0.1",
+  "description" : "Quick poll application",
+  "dependencies" : {
+    "express" : "4.x"
+  }
+}
