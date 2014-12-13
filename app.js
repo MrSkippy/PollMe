@@ -80,6 +80,8 @@ router.route('/question/:hash?')
 		// e.g. GET /question/coolnode
 		if(req.promiseQuestion) {
 			req.promiseQuestion.then(function(question) {
+				if (!question) 
+					res.sendStatus(404);
 				// Returns question JSON
 				res.json(question.toObject());
 			}).then(function(error) { // error
