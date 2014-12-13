@@ -33,6 +33,7 @@ var Question = mongoose.model('Question', questionSchema);
 
 // Query the database on the hash
 var getQuestionPromise = function(cleaned_hash) {
+	if (!cleaned_hash) return;
 	var query = Question.where({hash: cleaned_hash}),
 		promise = query.findOne().exec();
 	return promise;
@@ -77,12 +78,17 @@ router.route('/question/:hash?')
 	})
 	.get(function(req, res, next) {
 		// e.g. GET /question/coolnode
-		req.promiseQuestion.then(function(question) {
-			// Returns question JSON
-			res.json(question.toObject());
-		}).then(function(error) { // error
-			throw new Error(error + ' is an error!');
-		});
+		if(req.promiseQuestion) {
+			req.promiseQuestion.then(function(question) {
+				// Returns question JSON
+				res.json(question.toObject());
+			}).then(function(error) { // error
+				throw new Error(error + ' is an error!');
+			});		
+		} else {
+			throw new Error('No hash found!');
+			//res.end();
+		}
 	})
 	.put(function(req, res, next) {
 		next(new Error('not implemented'));
