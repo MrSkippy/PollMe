@@ -1,10 +1,12 @@
 var config = require('./config'),
+	path = require('path'),
 	express = require('express'),
 	bodyParser = require('body-parser'),
 	mongo = require('mongo'),
 	mongoose = require('mongoose'),
 	Schema = mongoose.Schema,
 	app = express();
+global.appRoot = path.resolve(__dirname);
 
 // Connect to the database
 mongoose.connect(config.credentials.mongodb_connection);
@@ -40,7 +42,7 @@ var getQuestionPromise = function(cleaned_hash) {
 };
 
 // 
-app.use('/public', express.static('public'));
+app.use('/assets', express.static('public'));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
@@ -147,7 +149,8 @@ app.use(router);
 app.get('/', function(req, res) {
 	console.log('Request received: ' + req.url);
 	// TODO: serve angular based index.html
-	res.send('Hello World!');
+	res.sendFile(appRoot + '/public/html/index.html');
+	//res.send('Hello World!');
 });
 
 var server = app.listen(process.env.PORT || 8076, function () {
