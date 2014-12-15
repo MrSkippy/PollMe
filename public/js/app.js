@@ -1,4 +1,4 @@
-var pollMeApp = angular.module('pollMeApp', ['ngResource'])
+var pollMeApp = angular.module('pollMeApp', [pollMeApp.services])
 .controller('pollMeController', ['$scope', function($scope) {
 	$scope.question = {
 		hash: 'LIKE',
@@ -14,6 +14,8 @@ var pollMeApp = angular.module('pollMeApp', ['ngResource'])
 		owner: 'John Doe'
 	};
 	debugger;
+	
+
 
 	//var Question = $resource('/user/:userId', {userId:'@id'}); //?
 	/*    $scope.addTodo = function() {
