@@ -3,6 +3,7 @@
   "version" : "0.0.1",
   "description" : "Quick poll application",
   "dependencies" : {
+    "path" : "*",
     "express" : "4.x",
     "body-parser" : "1.x",
     "mongo" : "*",
