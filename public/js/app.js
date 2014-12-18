@@ -37,6 +37,10 @@ var pollMeApp = angular.module('pollMeApp', ['pollMeApp.services'])
 				});
 		};
 	
+		$scope.createQuestion = function() {
+			debugger;
+			$scope.section = 'ask';
+		};
 	
 	}]);
 	
