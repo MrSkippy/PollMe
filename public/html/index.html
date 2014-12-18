@@ -9,6 +9,7 @@
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="/assets/css/app.css">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -23,13 +24,17 @@
 	<body>
 		<div class="container" data-ng-controller="pollMeController">
             <div id="getQuestion" data-ng-show="section=='welcome'" class="ng-hide">
-                <h1>Welcome</h1>
-                <h2>Answer a question</h2>
-                <span class="hash">#</span><input class="the-question-id" type="text" name="hash" data-ng-model="question.hash" />
-                <button id="goGetQuestion" class="btn btn-primary" type="button" data-ng-click="getQuestion()">Go</button>
+                <h1>Welcome <small>Answer a question</small></h1>
+				<div class="input-group input-group-lg">
+					<label class="input-group-addon"><strong><span class="hidden-xs">Hash </span>#</strong></label> 
+					<input class="form-control text-uppercase" type="text" name="hash" data-ng-model="question.hash" />
+					<span class="input-group-btn">
+						<button id="goGetQuestion" class="btn btn-primary" type="button" data-ng-click="getQuestion()">Go!</button>
+					</span>
+				</div>
                 <div class="add-question">
                     <h2>Create a question</h2>
-                    <button class="go-add-question btn btn-success" type="button">+</button>
+                    <button class="go-add-question btn btn-success" type="button" data-ng-click="createQuestion()">+</button>
                 </div>
             </div>
             <div id="createQuestion" data-ng-show="section=='ask'" class="ng-hide">
