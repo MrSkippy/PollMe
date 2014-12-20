@@ -1,1 +1,10 @@
 /* Custom formatting */
+.icon {
+	position: relative;
+	top: 1px;
+	display: inline-block;
+	line-height: 1;
+	width: 18px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}

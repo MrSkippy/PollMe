@@ -41,6 +41,10 @@ var pollMeApp = angular.module('pollMeApp', ['pollMeApp.services'])
 			debugger;
 			$scope.section = 'ask';
 		};
+		
+		$scope.addQuestion = function() {
+			debugger;
+		};
 	
 	}]);
 	
