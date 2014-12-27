@@ -1,6 +1,7 @@
 angular.module('pollMeApp.services', ['ngResource'])
 	.factory('PollMeQuestionApi', function($resource) {
-		return $resource('http://127.0.0.1:8076/question/:hash', {hash: '@hash'}, {
-			'update': { method: 'PUT'}
+		return $resource('/question/:hash', {hash: '@hash'}, {
+			'update': {method: 'PUT'},
+			'updateVotes': {method: 'PUT', url: '/question/:hash/vote'}
 		});
 	});

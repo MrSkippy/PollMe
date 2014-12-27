@@ -21,8 +21,8 @@ var questionSchema = new Schema({
 		negative: {type: String, default: 'No'}
 	},
 	votes: {
-		positive: Number, // e.g. 60,
-		negative: Number  // e.g. 40
+		positive: {type: Number, default: 0}, // e.g. 60
+		negative: {type: Number, default: 0}  // e.g. 40
 	},
 	owner: String, // e.g. 'John Doe'
 	dateAdded: {type: Date, default: Date.now},
@@ -101,7 +101,7 @@ router.route('/question/:hash?')
 		// POST /question
 		// Create a new question from the form values
 		var new_question = new Question({
-			hash: req.body.hash,
+			hash: req.body.hash.toUpperCase(),
 			question: req.body.question,
 			owner: req.body.owner
 		});
@@ -127,7 +127,7 @@ router.route('/question/:hash?')
 router.route('/question/:hash/votes?')
 	.all(function(req, res, next) {
 		// default logic for all
-		console.log('/question/vote(s) hash=' + req.params.hash);
+		console.log(req.method + ' ' + req.originalUrl + ' matched by ' + req.route.path + ' with hash: ' + req.params.hash);
 		next();
 	})
 	.get(function(req, res, next) {
@@ -135,8 +135,18 @@ router.route('/question/:hash/votes?')
 		res.json(req.question);
 	})
 	.put(function(req, res, next) {
+		console.log(req.body);
 		// update question with 1 vote
-		res.json(req.question);
+		// TEMP return:
+		res.json({
+			question: {
+				hash: req.params.hash,
+				votes: {
+					positive: 89,
+					negative: 11
+				}
+			}
+		});
 	})
 	.post(function(req, res, next) {
 		next(new Error('not implemented'));

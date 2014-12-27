@@ -8,3 +8,10 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+.progress { /* override of bootstrap */
+	height: 60px; 
+}
+.progress-bar { /* override of bootstrap */
+	line-height: 60px;
+	font-weight: bold;
+}
